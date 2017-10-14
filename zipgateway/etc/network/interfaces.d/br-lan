@@ -1,5 +1,5 @@
 auto br-lan
 iface br-lan inet dhcp 
   bridge_stp on
-  bridge_ports eth0
+  bridge_ports wlan0
   bridge_fd 2

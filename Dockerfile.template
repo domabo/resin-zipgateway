@@ -1,0 +1,40 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-debian:latest
+RUN sudo apt-get update;
+RUN sudo apt-get install lsb-release apt-transport-https;
+RUN sudo apt-get update;
+RUN sudo apt-get upgrade;
+RUN sudo apt-get install git apt-utils build-essential;
+
+ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+
+## ZIP GATEWAY PRE-REQ
+RUN sudo apt-get -y install \
+			bridge-utils sipcalc parprouted dhcp-helper radvd libpcap0.8 \
+			wpasupplicant \
+			avahi-autoipd \
+			libusb-1.0.0 \
+			net-tools iproute2 \
+			avahi-daemon avahi-utils libnss-mdns
+
+RUN systemctl enable avahi-daemon
+
+RUN sudo apt-get install cmake libssl-dev libavahi-client-dev libxml2-dev libbsd-dev libncurses5-dev;
+
+WORKDIR /usr/src/app
+
+## ZIP GATEWAY
+COPY ./zipgateway /
+RUN chmod +x /usr/local/bin/zinf && \
+chmod +x /usr/local/bin/postinst.sh && \
+chmod +x /usr/local/bin/zipgateway.sh
+
+## ZIP REF CLIENT
+RUN git clone https://github.com/Z-WavePublic/libzwaveip.git && \
+ cd libzwaveip && mkdir build && cd build && cmake .. && make && \
+ cp -rf ./ /usr/src/app 
+
+## CLEANUP
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+CMD /usr/local/bin/postinst.sh ; sleep infinity
+

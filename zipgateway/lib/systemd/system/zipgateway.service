@@ -1,6 +1,5 @@
 [Unit]
 Description=ZWave GATEWAY
-After=matrix-creator-firmware.service
 
 [Service]
 Type=oneshot

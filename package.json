@@ -1,0 +1,27 @@
+{
+  "name": "resin-zipgateway",
+  "version": "1.0.0",
+  "description": "Unofficial Z/IP Gateway for resin.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domabo/resin-zipgateway.git"
+  },
+  "keywords": [
+    "resin.io",
+    "zwave",
+    "nodejs"
+  ],
+  "author": "Domabo <admin@domabo.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/domabo/resin-zipgateway"
+  },
+  "homepage": "https:/github.com//domabo/resin-zipgateway",
+  "dependencies": {
+  }
+}

@@ -2,14 +2,14 @@
 
 ### BEGIN INIT INFO
 # Provides:          zipgateway
-# Required-Start:    $network $local_fs $remote_fs matrix-creator-init
+# Required-Start:    $network $local_fs $remote_fs
 # Required-Stop:     $network $local_fs $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: start Z/IP Gateway (zipgateway)
 ### END INIT INFO
 
-WLAN=
+WLAN=wlan0
 PIDDIR=/var/run
 ZIPGATEWAYPID=$PIDDIR/zipgateway.pid
 
